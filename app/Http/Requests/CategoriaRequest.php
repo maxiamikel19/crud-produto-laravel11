@@ -34,7 +34,7 @@ class CategoriaRequest extends FormRequest
         return [
             'nome.required' => 'The category name is required',
             'nome.max' => 'The category name is too long than :max',
-            'nome.min' => 'The category name must have more tham :min characters',
+            'nome.min' => 'The category name must have more tham :min caracters',
             'nome.unique' => 'The category name is taken'
         ];
     }

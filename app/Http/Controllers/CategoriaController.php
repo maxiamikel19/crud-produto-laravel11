@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CategoriaRequest;
 use Exception;
 use App\Models\Categoria;
+use Illuminate\Http\Request;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\CategoriaRequest;
 
 class CategoriaController extends Controller
 {
@@ -16,9 +17,14 @@ class CategoriaController extends Controller
         return response()->json($categorias, 200);
     }
 
-    public function show(Categoria $categoria): JsonResponse
+    public function show(Request $request, $id): JsonResponse
     {
-        return response()->json($categoria);
+        $categoria = Categoria::find($id);
+
+        return response()->json([
+            'categoria' => $categoria,
+            'produtos' => $categoria->produtos
+        ]);
     }
 
     public function store(CategoriaRequest $request): JsonResponse
